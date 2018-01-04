@@ -1,30 +1,30 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { Feature } from 'components'
+import { Detail } from 'components'
 
-storiesOf('Feature', module)
+storiesOf('Detail', module)
   .add('default', () => (
-    <Feature title="ARc">
+    <Detail title="ARc">
       Ullamco duis in labore consectetur ad exercitation esse esse duis mollit sint.
-    </Feature>
+    </Detail>
   ))
   .add('with link', () => (
-    <Feature title="ARc" link="https://github.com/diegohaz/arc">
+    <Detail title="ARc" link="https://github.com/diegohaz/arc">
       Ullamco duis in labore consectetur ad exercitation esse esse duis mollit sint.
-    </Feature>
+    </Detail>
   ))
   .add('with icon', () => (
-    <Feature icon="close" title="ARc">
+    <Detail icon="close" title="ARc">
       Ullamco duis in labore consectetur ad exercitation esse esse duis mollit sint.
-    </Feature>
+    </Detail>
   ))
   .add('with code', () => (
-    <Feature code="npm run build" title="ARc">
+    <Detail code="npm run build" title="ARc">
       Ullamco duis in labore consectetur ad exercitation esse esse duis mollit sint.
-    </Feature>
+    </Detail>
   ))
   .add('with soon', () => (
-    <Feature soon title="ARc">
+    <Detail soon title="ARc">
       Ullamco duis in labore consectetur ad exercitation esse esse duis mollit sint.
-    </Feature>
+    </Detail>
   ))

@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Feature from '.'
+import Detail from '.'
 
-const wrap = (props = {}) => shallow(<Feature title="Test" {...props} />).dive()
+const wrap = (props = {}) => shallow(<Detail title="Test" {...props} />).dive()
 
 it('renders children when passed in', () => {
   const wrapper = wrap({ children: 'test' })

@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { FeatureList } from 'components'
+import { DetailList } from 'components'
 
-storiesOf('FeatureList', module)
+storiesOf('DetailList', module)
   .add('default', () => (
-    <FeatureList />
+    <DetailList />
   ))
