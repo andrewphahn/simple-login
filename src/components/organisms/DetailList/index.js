@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Detail, Link, Heading, Paragraph } from 'components'
+import { Detail, Heading, Paragraph } from 'components'
 
 const Grid = styled.div`
   display: flex;
@@ -33,9 +34,10 @@ const StyledDetail = styled(Detail)`
   }
 `
 
-const DetailList = ({ ...props }) => (
+const DetailList = ({ details, loading, failed, ...props }) => (
   <div {...props}>
-    <StyledHeading>App Details</StyledHeading>
+    {failed && <div>Something went wrong while fetching posts. Please, try again later.</div>}
+    <StyledHeading>App Details {loading && <div>Loading...</div>}</StyledHeading>
     <Description>
       A quick list of info for this app.
     </Description>
@@ -44,7 +46,7 @@ const DetailList = ({ ...props }) => (
         icon="node"
         link="https://nodejs.org"
         title="Node.js"
-        code="6.3.13 - TODO: Fetch from server"
+        code={!loading && !failed && details && details.nodeVersion}
       >
         Node.js® is a JavaScript runtime built on Chrome&apos;s V8 JavaScript engine.
       </StyledDetail>
@@ -52,7 +54,7 @@ const DetailList = ({ ...props }) => (
         icon="path"
         link="http://dursocapital.com/wp-content/uploads/2015/09/stay-the-path.jpg"
         title="Path"
-        code="/Users/oren/src/simple-login"
+        code={!loading && !failed && details && details.path}
       >
         Path where the app is running
       </StyledDetail>
@@ -60,7 +62,7 @@ const DetailList = ({ ...props }) => (
         icon="date"
         link="https://en.wikipedia.org/wiki/Date_palm#Dates"
         title="Date - Time"
-        code="Tue Mar 24 2015 18:00:00 GMT-0600 (MDT)"
+        code={!loading && !failed && details && details.time}
       >
         Current date and time on the server
       </StyledDetail>
@@ -68,12 +70,18 @@ const DetailList = ({ ...props }) => (
         icon="user"
         link="https://en.wikipedia.org/wiki/User_(computing)"
         title="User details"
-        code="Admin user"
+        code={!loading && !failed && details && details.user}
       >
         Logged in user
       </StyledDetail>
     </Grid>
   </div>
 )
+
+DetailList.propTypes = {
+  details: PropTypes.object,
+  loading: PropTypes.bool,
+  failed: PropTypes.bool,
+}
 
 export default DetailList
