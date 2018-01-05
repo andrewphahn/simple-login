@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   const serverDetails = {
-    time: JSON.stringify(new Date()),
+    time: `${new Date()}`,
     nodeVersion: process.version,
     user: 'Admin',
     path: path.resolve(`${__dirname}/../..`),
