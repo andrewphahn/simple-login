@@ -8,6 +8,7 @@
     "env:prod": "cross-env NODE_ENV=production",
     "env:example": "cross-env SOURCE=src-example",
     "test": "jest --silent",
+    "test:debug": "jest",
     "coverage": "npm test -- --coverage",
     "postcoverage": "opn coverage/lcov-report/index.html",
     "lint": "eslint src src-example private webpack.config.js",

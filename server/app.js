@@ -6,13 +6,15 @@ import webpack from 'webpack'
 import webpackMiddleware from 'webpack-dev-middleware'
 import webpackConfig from '../webpack.config'
 
-import detail from './route/detailRoute'
+import detailRoute from './route/detailRoute'
+import userRoute from './route/userRoute'
 
 const app = express()
 
 app.use(bodyParser.json())
 
-app.use('/api/detail', detail)
+app.use('/api/detail', detailRoute)
+app.use('/api/login', userRoute)
 
 const compiler = webpack(webpackConfig)
 
@@ -23,7 +25,8 @@ app.use(webpackMiddleware(compiler, {
 }))
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './index.html'))
+  console.log('get', req)
+  res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 
 module.exports = app
