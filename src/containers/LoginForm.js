@@ -1,5 +1,5 @@
 import React from 'react'
-import { reduxForm } from 'redux-form'
+import { reduxForm, SubmissionError } from 'redux-form'
 import { resourceCreateRequest } from 'store/actions'
 import { createValidator, required } from 'services/validation'
 
@@ -7,7 +7,19 @@ import { LoginForm } from 'components'
 
 const LoginFormContainer = props => <LoginForm {...props} />
 
-const onSubmit = (data, dispatch) => dispatch(resourceCreateRequest('login', data))
+const onSubmit = (data, dispatch) => {
+  return dispatch(resourceCreateRequest('login', data)).then((resp) => {
+    const { success, errors, message } = resp
+    if (!success) {
+      throw new SubmissionError({
+        username: errors.username,
+        password: errors.password,
+        _error: message,
+      })
+    }
+    return resp
+  })
+}
 
 const validate = createValidator({
   username: [required],

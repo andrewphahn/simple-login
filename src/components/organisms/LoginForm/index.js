@@ -11,10 +11,11 @@ const Form = styled.form`
   padding: 1rem;
 `
 
-const LoginForm = ({ handleSubmit, submitting }) => {
+const LoginForm = ({ error, handleSubmit, submitting }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Heading level={2}>Login</Heading>
+      {error && <Heading level={2}>{error}</Heading>}
       <Field name="username" label="User Name" component={ReduxField} />
       <Field name="password" label="Password" type="password" component={ReduxField} />
       <Button type="submit" disabled={submitting}>Login</Button>
@@ -25,6 +26,7 @@ const LoginForm = ({ handleSubmit, submitting }) => {
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool,
+  error: PropTypes.string,
 }
 
 export default LoginForm

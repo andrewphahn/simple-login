@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
       res.json({ success: true, jwt: 'ADummyJWT' })
     } else {
       console.log('Login FAILED')
-      res.json({ success: false, errors: errors })
+      res.json({ success: false, message: 'Invalid Credentials', errors: errors })
     }
   })
 })
