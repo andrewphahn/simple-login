@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
   const serverDetails = {
     time: `${new Date()}`,
     nodeVersion: process.version,
-    user: 'Admin',
     path: path.resolve(`${__dirname}/../..`),
   }
 

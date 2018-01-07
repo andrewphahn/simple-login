@@ -22,15 +22,17 @@ function validateInput(data) {
 
 
 router.post('/', (req, res) => {
-  console.log(`Login request received, username: '${req.body.username}', password: '${req.body.password}'`)
+  const { username, password } = req.body
+  // TODO: This would be a service + data access layer, not directly in the route
+  console.log(`Login request received, username: '${username}', password: '${password}'`)
   validateInput(req.body).then(({ errors, isValid }) => {
     if (isValid) {
       // TODO: This is where actual would take place, not in validation
       console.log('Login SUCCESS')
-      res.json({ success: true, jwt: 'ADummyJWT' })
+      res.json({ username, success: true, jwt: 'ADummyJWT' })
     } else {
       console.log('Login FAILED')
-      res.json({ success: false, message: 'Invalid Credentials', errors: errors })
+      res.json({ success: false, message: 'Invalid Credentials', errors })
     }
   })
 })

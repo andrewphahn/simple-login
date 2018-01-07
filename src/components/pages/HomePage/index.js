@@ -1,11 +1,10 @@
-// https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 
-import { DetailList } from 'containers'
+import { LoginRequired, LoginForm, DetailList } from 'containers'
 
 const HomePage = () => {
   return (
-    <DetailList />
+    <LoginRequired LoginComponent={LoginForm} ToDisplay={DetailList} />
   )
 }
 

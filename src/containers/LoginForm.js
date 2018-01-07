@@ -1,6 +1,6 @@
 import React from 'react'
 import { reduxForm, SubmissionError } from 'redux-form'
-import { resourceCreateRequest } from 'store/actions'
+import { login } from 'store/actions'
 import { createValidator, required } from 'services/validation'
 
 import { LoginForm } from 'components'
@@ -8,8 +8,8 @@ import { LoginForm } from 'components'
 const LoginFormContainer = props => <LoginForm {...props} />
 
 const onSubmit = (data, dispatch) => {
-  return dispatch(resourceCreateRequest('login', data)).then((resp) => {
-    const { success, errors, message } = resp
+  return dispatch(login(data)).catch((err) => {
+    const { success, errors, message } = err
     if (!success) {
       throw new SubmissionError({
         username: errors.username,
@@ -17,7 +17,6 @@ const onSubmit = (data, dispatch) => {
         _error: message,
       })
     }
-    return resp
   })
 }
 
