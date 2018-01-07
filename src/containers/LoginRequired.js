@@ -19,11 +19,8 @@ class LoginRequiredContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log('LoginRequiredContainer.mapStateToProps', state)
-  return {
-    user: fromLogin.getUser(state),
-  }
-}
+const mapStateToProps = state => ({
+  user: fromLogin.getUser(state),
+})
 
 export default connect(mapStateToProps)(LoginRequiredContainer)

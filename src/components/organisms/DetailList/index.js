@@ -34,7 +34,13 @@ const StyledDetail = styled(Detail)`
   }
 `
 
-const DetailList = ({ details, loading, failed, ...props }) => (
+const DetailList = ({
+  details,
+  user,
+  loading,
+  failed,
+  ...props
+}) => (
   <div {...props}>
     {failed && <div>Something went wrong while fetching posts. Please, try again later.</div>}
     <StyledHeading>App Details {loading && <div>Loading...</div>}</StyledHeading>
@@ -70,7 +76,7 @@ const DetailList = ({ details, loading, failed, ...props }) => (
         icon="user"
         link="https://en.wikipedia.org/wiki/User_(computing)"
         title="User details"
-        code={!loading && !failed && details && details.user}
+        code={!loading && !failed && user}
       >
         Logged in user
       </StyledDetail>
@@ -80,6 +86,7 @@ const DetailList = ({ details, loading, failed, ...props }) => (
 
 DetailList.propTypes = {
   details: PropTypes.object,
+  user: PropTypes.string,
   loading: PropTypes.bool,
   failed: PropTypes.bool,
 }

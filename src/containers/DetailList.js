@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { isPending, hasFailed } from 'redux-saga-thunk'
-import { fromEntities, fromResource } from 'store/selectors'
-import { resourceDetailReadRequest } from 'store/actions'
+import { fromDetails, fromLogin } from 'store/selectors'
+import { loadDetailsRequest } from 'store/actions'
 
 import { DetailList } from 'components'
 
 class DetailListContainer extends Component {
   static propTypes = {
     details: PropTypes.object,
+    user: PropTypes.string,
     loading: PropTypes.bool,
     failed: PropTypes.bool,
     readDetails: PropTypes.func.isRequired,
@@ -25,19 +26,24 @@ class DetailListContainer extends Component {
   }
 
   render() {
-    const { details, loading, failed } = this.props
-    return <DetailList {...{ details, loading, failed }} />
+    const { details, user, loading, failed } = this.props
+    return <DetailList {...{ details, user, loading, failed }} />
   }
 }
 
-const mapStateToProps = state => ({
-  details: fromEntities.getDetail(state, 'detail', fromResource.getDetail(state, 'detail')),
-  loading: isPending(state, 'detailDetailRead'),
-  failed: hasFailed(state, 'detailDetailRead'),
-})
+const mapStateToProps = (state) => {
+  const details = {
+    details: fromDetails.getDetails(state),
+    user: fromLogin.getUsername(state),
+    loading: isPending(state, 'loadDetails'),
+    failed: hasFailed(state, 'loadDetails'),
+  }
+  console.log('DetailList.mapStateToProps', details)
+  return details
+}
 
 const mapDispatchToProps = dispatch => ({
-  readDetails: () => dispatch(resourceDetailReadRequest('detail')),
+  readDetails: () => dispatch(loadDetailsRequest()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailListContainer)
