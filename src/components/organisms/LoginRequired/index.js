@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Detail, Heading, Paragraph } from 'components'
+import { Detail, Heading, Paragraph, LogoutHeader } from 'components'
 
 const Grid = styled.div`
   display: flex;
@@ -34,17 +34,18 @@ const StyledDetail = styled(Detail)`
   }
 `
 
-const LoginRequired = ({ loggedIn, LoginComponent, ToDisplay, ...props }) => {
+const LoginRequired = ({ loggedIn, LoginComponent, ToDisplay, onLogout, ...props }) => {
   if (!loggedIn) {
     return <div {...props}> <LoginComponent /> </div>
   }
-  return <ToDisplay />
+  return <div><LogoutHeader onLogout={onLogout} /><ToDisplay /></div>
 }
 
 LoginRequired.propTypes = {
   loggedIn: PropTypes.bool,
   LoginComponent: PropTypes.func,
   ToDisplay: PropTypes.func,
+  onLogout: PropTypes.func,
 }
 
 export default LoginRequired

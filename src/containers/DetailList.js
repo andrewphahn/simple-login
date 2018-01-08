@@ -31,16 +31,12 @@ class DetailListContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const details = {
-    details: fromDetails.getDetails(state),
-    user: fromLogin.getUsername(state),
-    loading: isPending(state, 'loadDetails'),
-    failed: hasFailed(state, 'loadDetails'),
-  }
-  console.log('DetailList.mapStateToProps', details)
-  return details
-}
+const mapStateToProps = state => ({
+  details: fromDetails.getDetails(state),
+  user: fromLogin.getUsername(state),
+  loading: isPending(state, 'loadDetails'),
+  failed: hasFailed(state, 'loadDetails'),
+})
 
 const mapDispatchToProps = dispatch => ({
   readDetails: () => dispatch(loadDetailsRequest()),

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { logout } from 'store/actions'
 import { fromLogin } from 'store/selectors'
 
 import { LoginRequired } from 'components'
@@ -10,12 +11,13 @@ class LoginRequiredContainer extends Component {
     user: PropTypes.object,
     LoginComponent: PropTypes.func,
     ToDisplay: PropTypes.func,
+    onLogout: PropTypes.func,
   }
 
   render() {
-    const { user, LoginComponent, ToDisplay } = this.props
+    const { user, LoginComponent, ToDisplay, onLogout } = this.props
     const loggedIn = !!user
-    return <LoginRequired {...{ loggedIn, LoginComponent, ToDisplay }} />
+    return <LoginRequired {...{ loggedIn, LoginComponent, ToDisplay, onLogout }} />
   }
 }
 
@@ -23,4 +25,8 @@ const mapStateToProps = state => ({
   user: fromLogin.getUser(state),
 })
 
-export default connect(mapStateToProps)(LoginRequiredContainer)
+const mapDispatchToProps = dispatch => ({
+  onLogout: () => dispatch(logout()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginRequiredContainer)
