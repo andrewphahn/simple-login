@@ -1,42 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { palette } from 'styled-theme'
 
-import { Detail, Heading, Paragraph, LogoutHeader } from 'components'
+import { LogoutHeader } from 'components'
 
-const Grid = styled.div`
+const LoginBox = styled.div`
+  position: absolute;
   display: flex;
-  flex-flow: row wrap;
-  > * {
-    width: calc(50% - 2rem);
-    @media screen and (max-width: 640px) {
-      width: 100%;
-    }
-  }
-`
-
-const StyledHeading = styled(Heading)`
-  text-align: center;
-`
-
-const Description = styled(Paragraph)`
-  text-align: center;
-  margin: 2rem;
-  @media screen and (max-width: 640px) {
-    margin: 1rem;
-  }
-`
-
-const StyledDetail = styled(Detail)`
+  flex-direction: column;
+  background-color: ${palette('grayscale', 0, true)};
+  border-radius: 0.125em;
+  color: ${palette('grayscale', 0)};
+  top: auto;
+  left: calc(50% - 10rem);
+  right: auto;
+  bottom: auto;
   margin: 1rem;
-  @media screen and (max-width: 640px) {
-    margin: 0;
-  }
+  outline: none;
+  box-sizing: border-box;
+  min-width: 320px;
+  max-width: calc(640px - 1rem);
+  max-height: calc(100% - 1rem);
+  padding-top: '1rem';
 `
 
 const LoginRequired = ({ loggedIn, LoginComponent, ToDisplay, onLogout, ...props }) => {
   if (!loggedIn) {
-    return <div {...props}> <LoginComponent /> </div>
+    return <LoginBox {...props}><LoginComponent /></LoginBox>
   }
   return <div><LogoutHeader onLogout={onLogout} /><ToDisplay /></div>
 }

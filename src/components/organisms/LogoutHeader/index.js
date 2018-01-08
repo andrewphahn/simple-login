@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { size } from 'styled-theme'
 
 import { Block, Button } from 'components'
 
@@ -15,10 +14,8 @@ const Wrapper = styled(Block)`
 `
 
 const InnerWrapper = styled.div`
-  display: flex;
-  align-items: left;
-  width: 100%;
-  max-width: ${size('maxWidth')};
+  position: relative;
+  left: calc(90%);
 `
 
 const LogoutHeader = ({onLogout, ...props}) => {
