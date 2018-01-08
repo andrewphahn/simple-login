@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { DetailList } from 'components'
+import { LoginRequired } from 'components'
 
-storiesOf('DetailList', module)
+storiesOf('LoginRequired', module)
   .add('default', () => (
-    <DetailList />
+    <LoginRequired />
   ))
