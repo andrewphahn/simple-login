@@ -18,4 +18,5 @@ $ npm run test
  * Login state not validated on server
  * No data persistence on server, user is hardcoded
  
+ **_[Considerations](https://frontdesk.madskills.io)_**
  <a href="https://frontdesk.madskills.io" rel="dofollow">Front Desk</a>
